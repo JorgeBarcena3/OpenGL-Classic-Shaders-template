@@ -64,7 +64,7 @@ int main()
 
     Shader_Program shader_program;
 
-    shader_program.attach(Vertex_Shader(Shader::Source_Code::from_string("../../assets/vertexShader.vglsl")));
+    shader_program.attach(Vertex_Shader(Shader::Source_Code::from_file("../../assets/vertexShader.vglsl")));
     shader_program.attach(Fragment_Shader(Shader::Source_Code::from_file("../../assets/fragmentShader.fglsl")));
 
     shader_program.link();
