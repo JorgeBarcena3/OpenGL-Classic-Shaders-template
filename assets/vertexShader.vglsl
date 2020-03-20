@@ -1,0 +1,7 @@
+void main()
+{
+    vec4 coordinates = gl_Vertex;
+    coordinates.x    = coordinates.x * 0.5;
+    coordinates.y    = coordinates.y * 0.5;
+    gl_Position      = gl_ModelViewProjectionMatrix * coordinates;
+}
