@@ -36,14 +36,14 @@
     <ClCompile Include="..\..\code\source\Shader_Program.cpp">
       <Filter>toolkit\source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\source\Cube.cpp">
-      <Filter>sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\code\source\View.cpp">
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lib\targa\src\targa.c">
       <Filter>targa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\Cube.cpp">
+      <Filter>toolkit\ExampleShapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
