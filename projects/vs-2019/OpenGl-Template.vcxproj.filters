@@ -22,6 +22,9 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{e311bd5c-a6d5-47f9-946d-4cc30e0d82e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="targa">
+      <UniqueIdentifier>{eff57c60-a33f-4f55-b343-7690c34ec899}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\source\main.cpp">
@@ -32,6 +35,15 @@
     </ClCompile>
     <ClCompile Include="..\..\code\source\Shader_Program.cpp">
       <Filter>toolkit\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\Cube.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\source\View.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\targa\src\targa.c">
+      <Filter>targa</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +61,21 @@
     </ClInclude>
     <ClInclude Include="..\..\code\header\Vertex_Shader.hpp">
       <Filter>toolkit\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\header\Color_Buffer.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\header\Color_Buffer_Rgba8888.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\header\Cube.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\header\View.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\targa\include\targa.h">
+      <Filter>targa</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

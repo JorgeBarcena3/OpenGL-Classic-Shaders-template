@@ -1,7 +1,7 @@
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
  *                                                                             *
- *  Started by ¡ngel on february of 2014                                       *
+ *  Started by √Ångel on march of 2014                                          *
  *                                                                             *
  *  This is free software released into the public domain.                     *
  *                                                                             *
@@ -9,66 +9,31 @@
  *                                                                             *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <string>
 #include <cassert>
-#include <iostream>
-#include <GL/glew.h>            // Debe incluirse antes que gl.h
-#include "../header/exampleShapes/Circle.hpp"
+#include "../header/View.hpp"
 #include <SFML/Window.hpp>
 #include <SFML/OpenGL.hpp>
 
-#include "../header/Vertex_Shader.hpp"
-#include "../header/Fragment_Shader.hpp"
-#include "../header/Shader_Program.hpp"
-
 using namespace sf;
-using namespace shaderToolkit;
-using namespace std;
+using namespace exampleShapes;
 
-void reset_viewport(int width, int height)
+int main ()
 {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, GLdouble(width), 0, GLdouble(height), +1, -1);
-    glViewport(0, 0, width, height);
-    glMatrixMode(GL_MODELVIEW);
-}
+    Window window(VideoMode(800, 600), "OpenGL + Shaders + textures", Style::Default, ContextSettings(32));
 
-int main()
-{
-    int window_width = 800;
-    int window_height = 600;
-
-    // Se crea la ventana de SFML, que es donde se crear· el contexto de OpenGL:
-
-    Window window(VideoMode(window_width, window_height), "OpenGL Examples: Shader Encapsulation", Style::Default, ContextSettings(32));
-
-    window.setVerticalSyncEnabled(true);
+    window.setVerticalSyncEnabled (true);
 
     // Una vez se ha creado el contexto de OpenGL ya se puede inicializar Glew:
 
-    GLenum glew_initialization = glewInit();
+    GLenum glew_initialization =  glewInit ();
 
     assert(glew_initialization == GLEW_OK);
 
-    // Se inicializan diversos aspectos del programa:
+    // Una vez se ha inicializado GLEW se puede crear una instancia de View:
 
-    glDisable(GL_CULL_FACE);
-    glDisable(GL_DEPTH_TEST);
+    View view(800, 600);
 
-    reset_viewport(window_width, window_height);
-
-    exampleShapes::Circle circle(200.f);
-
-    // Se compilan y se activan los shaders:
-
-    Shader_Program shader_program;
-
-    shader_program.attach(Vertex_Shader(Shader::Source_Code::from_file("../../assets/vertexShader.vglsl")));
-    shader_program.attach(Fragment_Shader(Shader::Source_Code::from_file("../../assets/fragmentShader.fglsl")));
-
-    shader_program.link();
-    shader_program.use();
+    // Se ejecuta el bucle principal:
 
     bool running = true;
 
@@ -76,39 +41,33 @@ int main()
     {
         Event event;
 
-        while (window.pollEvent(event))
+        while (window.pollEvent (event))
         {
             switch (event.type)
             {
-            case Event::Closed:
-            {
-                running = false;
-                break;
-            }
+                case Event::Closed:
+                {
+                    running = false;
+                    break;
+                }
 
-            case Event::Resized:
-            {
-                Vector2u window_size = window.getSize();
+                case Event::Resized:
+                {
+                    Vector2u window_size = window.getSize ();
 
-                window_width = window_size.x;
-                window_height = window_size.y;
+                    view.resize (window_size.x, window_size.y);
 
-                reset_viewport(window_width, window_height);
-
-                break;
-            }
+                    break;
+                }
             }
         }
 
-        glClear(GL_COLOR_BUFFER_BIT);
+        view.update ();
+        view.render ();
 
-        glLoadIdentity();
-        glTranslatef(float(window_width / 2), float(window_height / 2), 0.f);
-
-        circle.render();
-
-        window.display();
-    } while (running);
+        window.display ();
+    }
+    while (running);
 
     return (EXIT_SUCCESS);
 }
