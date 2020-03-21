@@ -13,6 +13,7 @@
 #include "../header/View.hpp"
 #include <SFML/Window.hpp>
 #include <SFML/OpenGL.hpp>
+#include <SFML/System/Time.hpp>
 
 using namespace sf;
 using namespace exampleShapes;
@@ -36,6 +37,8 @@ int main ()
     // Se ejecuta el bucle principal:
 
     bool running = true;
+
+    sf::Clock clock; // starts the clock
 
     do
     {
@@ -62,7 +65,7 @@ int main ()
             }
         }
 
-        view.update ();
+        view.update (clock.getElapsedTime().asSeconds());
         view.render ();
 
         window.display ();

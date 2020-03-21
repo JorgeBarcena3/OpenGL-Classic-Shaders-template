@@ -98,7 +98,7 @@
             {
                 assert (is_usable ());
 
-                GLint   uniform_id  = glGetUniformLocation (program_object_id, identifier);
+                GLint uniform_id  = glGetUniformLocation(program_object_id, identifier);
 
                 assert (uniform_id != -1);
 

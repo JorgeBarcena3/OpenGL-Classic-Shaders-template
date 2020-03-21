@@ -37,9 +37,10 @@ namespace exampleShapes
 
         View(int width, int height);
 
-        void   update();
+        void   update(float time);
         void   render();
         void   resize(int width, int height);
+        bool   uploadUniformVariable(const char * name, float value);
 
     private:
 
