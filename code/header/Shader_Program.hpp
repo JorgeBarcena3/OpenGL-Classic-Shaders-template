@@ -100,7 +100,7 @@
 
                 GLint uniform_id  = glGetUniformLocation(program_object_id, identifier);
 
-                assert (uniform_id != -1);
+            //    assert (uniform_id != -1);
 
                 return (uniform_id);
             }
