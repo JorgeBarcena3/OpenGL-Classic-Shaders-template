@@ -31,13 +31,19 @@ namespace exampleShapes
         shapes.push_back(new Cube("../../assets/tga/wood-crate-2.tga"));*/
 
         //Esferas
-        shapes.push_back(new Sphere(2,20,40));
+        shapes.push_back(new Sphere(2,25,40));
 
         resize(width, height);
 
-        // Se habilita el backface culling:
+        glEnable(GL_CULL_FACE);
+
+        // Se habilita el backface culling, una luz y materiales básicos:
 
         glEnable(GL_CULL_FACE);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glEnable(GL_COLOR_MATERIAL);
+
 
         // Se compilan y se activan los shaders:
 
@@ -54,12 +60,32 @@ namespace exampleShapes
     {
         angle += 0.5f;
 
+        static int light_direction = 1;
+        static Vector3f ligh_position({-10,5,0});
+
+        ligh_position[0] += 0.01f * light_direction;
+
+        if (ligh_position[0] > 10)
+            light_direction = -1;
+        if(ligh_position[0] < -10)
+            light_direction = 1;
+
         uploadUniformVariable("time", time);
+        uploadUniformVariable("light_pos", ligh_position);
     }
 
     void View::render()
     {
         glClear(GL_COLOR_BUFFER_BIT);
+
+        // Se establece la dirección de la luz:
+
+       
+        // Se inicializan los parámetros relativos a la iluminación:
+
+        float light_direction[4] = { 0.1,0.1,1.0,0.0 };
+
+        glLightfv(GL_LIGHT0, GL_POSITION, light_direction);
 
         float x = 0; // -2
 
@@ -87,6 +113,20 @@ namespace exampleShapes
     }
 
     bool View::uploadUniformVariable(const char* name, float value)
+    {
+        GLint id = shaderProgram.get_uniform_id(name);
+
+        if (id != -1)
+        {
+            shaderProgram.set_uniform_value(id, value);
+            return true;
+
+        }
+
+        return false;
+    }
+    
+    bool View::uploadUniformVariable(const char* name, Vector3f value)
     {
         GLint id = shaderProgram.get_uniform_id(name);
 

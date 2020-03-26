@@ -40,6 +40,7 @@ namespace exampleShapes
         void   render();
         void   resize(int width, int height);
         bool   uploadUniformVariable(const char * name, float value);
+        bool   uploadUniformVariable(const char* name, Vector3f value);
 
     private:
 
