@@ -12,8 +12,7 @@
 #ifndef CUBE_HEADER
 #define CUBE_HEADER
 
-    #include <memory>
-    #include <SFML/OpenGL.hpp>
+#include "ExampleShape.hpp"
 
     namespace exampleShapes
     {
@@ -21,7 +20,7 @@
         class   Color_Buffer_Rgba8888;
         typedef Color_Buffer_Rgba8888 Texture;
 
-        class Cube
+        class Cube : public ExampleShape
         {
         private:
 
@@ -42,7 +41,7 @@
 
         public:
 
-            void render ();
+            void render () override;
 
         private:
 

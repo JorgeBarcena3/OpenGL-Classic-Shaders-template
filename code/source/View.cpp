@@ -14,6 +14,8 @@
 #include <cassert>
 #include "../header/Vertex_Shader.hpp"
 #include "../header/Fragment_Shader.hpp"
+#include "../header/exampleShapes/Cube.hpp"
+#include "../header/exampleShapes/Sphere.hpp"
 
 namespace exampleShapes
 {
@@ -22,10 +24,15 @@ namespace exampleShapes
 
     View::View(int width, int height)
         :
-        cube1("../../assets/tga/wood-crate-1.tga"),
-        cube2("../../assets/tga/wood-crate-2.tga"),
         angle(0)
     {
+        //Cubos
+        /*shapes.push_back(new Cube("../../assets/tga/wood-crate-1.tga"));
+        shapes.push_back(new Cube("../../assets/tga/wood-crate-2.tga"));*/
+
+        //Esferas
+        shapes.push_back(new Sphere(2,20,40));
+
         resize(width, height);
 
         // Se habilita el backface culling:
@@ -38,7 +45,7 @@ namespace exampleShapes
         shaderProgram.attach(Fragment_Shader(Shader::Source_Code::from_file("../../assets/fragmentShader.fglsl")));
 
         shaderProgram.link();
-        shaderProgram.use();    
+        shaderProgram.use();
 
 
     }
@@ -54,28 +61,19 @@ namespace exampleShapes
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Resetear la matriz MODELVIEW:
+        float x = 0; // -2
 
-        glLoadIdentity();
+        for (auto shape : shapes)
+        {
+            glLoadIdentity();
+            glTranslatef(x, 0.f, -15.f); // - 10
+            glRotatef(+angle, 1.f, 2.f, 1.f);
 
-        // Se rota el cubo 1 y se empuja hacia el fondo:
+            shape->render();
 
-        glTranslatef(-2.f, 0.f, -20.f);
-        glRotatef(-angle, 1.f, 2.f, 1.f);
+            x += 4;
+        }
 
-        // Se dibuja el cubo 1:
-
-        cube1.render();
-
-        // Se rota el cubo 2 y se empuja hacia el fondo:
-
-        glLoadIdentity();
-        glTranslatef(+2.f, 0.f, -20.f);
-        glRotatef(+angle, 1.f, 2.f, 1.f);
-
-        // Se dibuja el cubo 2:
-
-        cube2.render();
     }
 
     void View::resize(int width, int height)

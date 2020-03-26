@@ -15,14 +15,17 @@
     <ClCompile Include="..\..\code\source\main.cpp" />
     <ClCompile Include="..\..\code\source\Shader.cpp" />
     <ClCompile Include="..\..\code\source\Shader_Program.cpp" />
+    <ClCompile Include="..\..\code\source\Sphere.cpp" />
     <ClCompile Include="..\..\code\source\View.cpp" />
     <ClCompile Include="..\..\lib\targa\src\targa.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\header\Color_Buffer.hpp" />
     <ClInclude Include="..\..\code\header\Color_Buffer_Rgba8888.hpp" />
-    <ClInclude Include="..\..\code\header\Cube.hpp" />
     <ClInclude Include="..\..\code\header\exampleShapes\Circle.hpp" />
+    <ClInclude Include="..\..\code\header\exampleShapes\Cube.hpp" />
+    <ClInclude Include="..\..\code\header\exampleShapes\ExampleShape.hpp" />
+    <ClInclude Include="..\..\code\header\exampleShapes\Sphere.hpp" />
     <ClInclude Include="..\..\code\header\Fragment_Shader.hpp" />
     <ClInclude Include="..\..\code\header\Shader.hpp" />
     <ClInclude Include="..\..\code\header\Shader_Program.hpp" />

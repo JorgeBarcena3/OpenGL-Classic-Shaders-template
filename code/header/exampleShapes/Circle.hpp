@@ -12,13 +12,12 @@
 #ifndef CIRCLE_HEADER
 #define CIRCLE_HEADER
 
-#include <cmath>
-#include <SFML/OpenGL.hpp>
+#include "ExampleShape.hpp"
 
 namespace exampleShapes
 {
 
-    class Circle
+    class Circle : public ExampleShape
     {
     private:
 
@@ -36,7 +35,7 @@ namespace exampleShapes
             glDeleteLists(display_list_id, 1);
         }
 
-        void render()
+        void render() override
         {
             glCallList(display_list_id);
         }

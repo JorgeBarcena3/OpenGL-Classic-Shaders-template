@@ -13,7 +13,7 @@
 #define VIEW_HEADER
 
 #include <GL/glew.h>            // Debe incluirse antes que gl.h
-#include "Cube.hpp"
+#include "exampleShapes/ExampleShape.hpp"
 #include <string>
 #include "Shader_Program.hpp"
 
@@ -29,8 +29,7 @@ namespace exampleShapes
         static const std::string   vertex_shader_code;
         static const std::string fragment_shader_code;
 
-        Cube   cube1;
-        Cube   cube2;
+        std::vector< ExampleShape * > shapes;
         float  angle;
 
     public:

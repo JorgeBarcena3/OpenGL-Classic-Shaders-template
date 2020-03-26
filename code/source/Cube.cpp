@@ -9,7 +9,7 @@
  *                                                                             *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include "../header/Cube.hpp"
+#include "../header/exampleShapes/Cube.hpp"
 #include <SFML/OpenGL.hpp>
 #include "../header/Color_Buffer_Rgba8888.hpp"
 

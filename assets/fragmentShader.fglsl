@@ -23,6 +23,6 @@ void main()
     float blendAmount = distanceToCenter( gl_TexCoord[0].st );
 
 
-    gl_FragColor = blend(blendColor, texture2D (sampler2d, gl_TexCoord[0].st), blendAmount);
+    gl_FragColor = vec4(255,0,0,255); //blend(blendColor, texture2D (sampler2d, gl_TexCoord[0].st), blendAmount);
 
 }
